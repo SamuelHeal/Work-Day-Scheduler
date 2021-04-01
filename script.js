@@ -1,5 +1,3 @@
-init()
-storeData()
 
 // Setting the current date and inserting it into the webpage
 var currentDate = moment().format("LLLL")
@@ -30,79 +28,74 @@ var storage = [
     },
     {
         text: ''
-    },
+    }, 
     {
         text: ''
     }
 ]
 
 
-$(".first").on("click", function(){
-    var nineAMText = document.getElementById("9").value
-    storage[0].text = nineAMText    
-    storeData()
-})
+var textCapture = [{
+    class: ".first",
+    id: "9",
+},
+{
+    class: ".second",
+    id: "10",
+},
+{
+    class: ".third",
+    id: "11",
+},
+{
+    class: ".fourth",
+    id: "12",
+},
+{
+    class: ".fifth",
+    id: "13",
+},
+{
+    class: ".sixth",
+    id: "14",
+},
+{
+    class: ".seventh",
+    id: "15",
+},
+{
+    class: ".eigth",
+    id: "16",
+},
+{
+    class: ".ninth",
+    id: "17",
+}]
 
-$(".second").on("click", function(){
-    var tenAMText = document.getElementById("10").value
-    storage[1].text = tenAMText  
-    storeData()
+textCapture.forEach(function(item, i){
+    $(item.class).on("click", function(){
+        var text = document.getElementById(item.id).value
+        storage[i].text = text
+        storeData()
+    })
 })
-
-$(".third").on("click", function(){
-    var elevenAMText = document.getElementById("11").value
-    storage[2].text = elevenAMText   
-    storeData()
-})
-
-$(".fourth").on("click", function(){
-    var twelvePMText = document.getElementById("12").value
-    storage[3].text = twelvePMText
-    storeData()
-   
-})
-
-$(".fifth").on("click", function(){
-    var onePMText = document.getElementById("13").value
-    storage[4].text = onePMText   
-    storeData()
-})
-
-$(".sixth").on("click", function(){
-    var twoPMText = document.getElementById("14").value
-    storage[5].text = twoPMText   
-    storeData()
-})
-
-$(".seventh").on("click", function(){
-    var threePMText = document.getElementById("15").value
-    storage[6].text = threePMText
-    storeData()
-})
-
-$(".eigth").on("click", function(){
-    var fourPMText = document.getElementById("16").value
-    storage[7].text = fourPMText   
-    storeData()
-})
-
-$(".ninth").on("click", function(){
-    var fivePMText = document.getElementById("17").value
-    storage[8].text = fivePMText 
-    storeData()
-})
-
 
 function storeData(){
     localStorage.setItem("inputText", JSON.stringify(storage))
 }
 
-function init(){
+
+window.onload = function init(){
+    colorChanging()
     var storedData = JSON.parse(localStorage.getItem("inputText"));
-    storage = storedData
+    if (storedData != null){
+        storage = storedData
+    }
+    
     localStorage.setItem("inputText", JSON.stringify(storage))
     console.log(storedData)
     console.log(storage)
+    
     $("#9").val(storage[0].text)
     $("#10").val(storage[1].text)
     $("#11").val(storage[2].text)
@@ -112,154 +105,62 @@ function init(){
     $("#15").val(storage[6].text)
     $("#16").val(storage[7].text)
     $("#17").val(storage[8].text)
+
+    console.log(storage)
 }
 
 // Code to control the color changes
 
+var colorChange = [
+{
+    id: "#9",
+    time: 9
+},
+{
+    id: "#10",
+    time: 10
+},
+{
+    id: "#11",
+    time: 11
+},
+{
+    id: "#12",
+    time: 12
+},
+{
+    id: "#13",
+    time: 13
+},
+{
+    id: "#14",
+    time: 14
+},
+{
+    id: "#15",
+    time: 15
+},
+{
+    id: "#16",
+    time: 16
+},
+{
+    id: "#17",
+    time: 17
+}]
+
 function colorChanging(){
-    var currentTime = moment().hour()
-    if (currentTime === 9){
-        $("#9").addClass("red")
-        $("#10").addClass("green")
-        $("#11").addClass("green")
-        $("#12").addClass("green")
-        $("#13").addClass("green")
-        $("#14").addClass("green")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-        
-    }
-
-    else if (currentTime === 10){
-        $("#9").addClass("grey")
-        $("#10").addClass("red")
-        $("#11").addClass("green")
-        $("#12").addClass("green")
-        $("#13").addClass("green")
-        $("#14").addClass("green")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 11){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("red")
-        $("#12").addClass("green")
-        $("#13").addClass("green")
-        $("#14").addClass("green")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 12){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("red")
-        $("#13").addClass("green")
-        $("#14").addClass("green")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 13){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("grey")
-        $("#13").addClass("red")
-        $("#14").addClass("green")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 14){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("grey")
-        $("#13").addClass("grey")
-        $("#14").addClass("red")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 15){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("grey")
-        $("#13").addClass("grey")
-        $("#14").addClass("grey")
-        $("#15").addClass("red")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 16){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("grey")
-        $("#13").addClass("grey")
-        $("#14").addClass("grey")
-        $("#15").addClass("grey")
-        $("#16").addClass("red")
-        $("#17").addClass("green")
-
-    }
-
-    else if (currentTime === 17){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("grey")
-        $("#13").addClass("grey")
-        $("#14").addClass("grey")
-        $("#15").addClass("grey")
-        $("#16").addClass("grey")
-        $("#17").addClass("red")
-
-    }
-
-    else if (currentTime > 17){
-        $("#9").addClass("grey")
-        $("#10").addClass("grey")
-        $("#11").addClass("grey")
-        $("#12").addClass("grey")
-        $("#13").addClass("grey")
-        $("#14").addClass("grey")
-        $("#15").addClass("grey")
-        $("#16").addClass("grey")
-        $("#17").addClass("grey")
-    }
-
-    else if (currentTime < 9){
-        $("#9").addClass("green")
-        $("#10").addClass("green")
-        $("#11").addClass("green")
-        $("#12").addClass("green")
-        $("#13").addClass("green")
-        $("#14").addClass("green")
-        $("#15").addClass("green")
-        $("#16").addClass("green")
-        $("#17").addClass("green")
-    }
-
+    colorChange.forEach(function(item, i){
+        var currentTime = moment().hour()
+        if (item.time === currentTime){
+            $(item.id).addClass("red")
+        }
+        if (item.time < currentTime){
+            $(item.id).addClass("grey")
+        }
+        if (item.time > currentTime){
+            $(item.id).addClass("green")
+        }
+    })
 }
-
-colorChanging()
 
