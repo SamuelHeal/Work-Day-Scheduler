@@ -95,3 +95,18 @@ textarea {
   width: 30px
 
 }
+
+.green{
+  background-color: #77dd77;
+  opacity: 90%
+}
+
+.red{
+  background-color: #ff6961;
+  opacity: 90%
+}
+
+.grey{
+  background-color: grey;
+  opacity: 90%
+}
